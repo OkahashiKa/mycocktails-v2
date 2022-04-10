@@ -1,0 +1,45 @@
+<h2>Management Materials</h2>
+<div *ngIf="materialList$ | async as materialList">
+  <table mat-table [dataSource]="materialList$" class="mat-elevation-z8">
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef class="table-select">
+        <input type="checkbox" />
+      </th>
+      <td mat-cell *matCellDef="let element" class="table-select">
+        <input type="checkbox" />
+      </td>
+    </ng-container>
+
+    <!-- Id column -->
+    <ng-container matColumnDef="id" class="table-column">
+      <th mat-header-cell *matHeaderCellDef>No</th>
+      <td mat-cell *matCellDef="let element">{{ element.material_id }}</td>
+    </ng-container>
+
+    <!-- Name column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>name</th>
+      <td mat-cell *matCellDef="let element">{{ element.material_name }}</td>
+    </ng-container>
+
+    <!-- category column -->
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef>category</th>
+      <td mat-cell *matCellDef="let element">{{ element.category_name }}</td>
+    </ng-container>
+
+    <!-- Edit button column -->
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef class="table-edit"></th>
+      <td mat-cell *matCellDef="let element" class="table-edit">
+        <button mat-raised-button>edit</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
+<div class="create-button">
+  <button mat-raised-button (click)="createMaterial()">create</button>
+</div>

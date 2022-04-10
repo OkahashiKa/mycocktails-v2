@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { defer, Observable } from 'rxjs';
 import { MaterialModel } from 'src/app/models/material/materialModel';
 import { MaterialDetailModel } from 'src/app/models/material/materialDetailModel';
 import { CommonMessageModel } from 'src/app/models/common/commonMessageModel';
 import { UserMaterialModel } from 'src/app/models/material/userMaterialModel';
+import { supabase } from 'src/app/libs/supabase/supabase-client';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +22,9 @@ export class MaterialsService {
   }
 
   getMaterialsList(): Observable<MaterialModel[]> {
-    return this.httpClient.get<MaterialModel[]>(`${this.BASE_PATH}`);
+    return defer(async () => {
+      return await this.getMaterialsListFromSupabase();
+    });
   }
 
   getUserMaterialList(userId: string): Observable<MaterialModel[]> {
@@ -54,5 +56,16 @@ export class MaterialsService {
     return this.httpClient.delete<CommonMessageModel>(
       `${this.BASE_PATH}/user_material?userId=${userId}&materialId=${materialId}`
     );
+  }
+
+  private async getMaterialsListFromSupabase(): Promise<MaterialModel[]> {
+    // @note Supabaseに接続
+    let { data: materialList, error } = await supabase
+      .from<MaterialModel>('v_material')
+      .select('*');
+
+    console.log(materialList);
+
+    return materialList ? materialList : [];
   }
 }

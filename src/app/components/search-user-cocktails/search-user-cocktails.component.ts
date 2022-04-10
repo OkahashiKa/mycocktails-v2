@@ -35,16 +35,16 @@ export class SearchUserCocktailsComponent implements OnInit {
     this.userMaterialList$.subscribe((um) =>
       this.getUserCocktail({
         searchString: '',
-        materialIdList: um.map((um) => um.materialId) as number[],
+        materialIdList: um.map((um) => um.material_id) as number[],
         materialSearchType: 'AND',
       })
     );
   }
 
   getUserMaterialList(): void {
-    this.store.dispatch(
-      new MaterialAction.GetUserMaterialList('kazuki.okahashi')
-    );
+    // this.store.dispatch(
+    //   new MaterialAction.GetUserMaterialList('kazuki.okahashi')
+    // );
   }
 
   getUserCocktail(searchCocktailCondition: SearchCocktailConditionModel): void {

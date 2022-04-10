@@ -2,17 +2,17 @@ export interface MaterialModel {
   /**
    * Material id
    */
-  materialId?: number;
+  material_id?: number;
   /**
    * Material name.
    */
-  materialName?: string;
+  material_name?: string;
   /**
    * Material category id.
    */
-  categoryId?: number;
+  category_id?: number;
   /**
    * Material category name.
    */
-  categoryName?: string;
+  category_name?: string;
 }
