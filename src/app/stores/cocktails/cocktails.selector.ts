@@ -19,4 +19,9 @@ export class CocktailSelector {
   static userCocktailList(state: CocktailStateModel) {
     return state.userCocktailList;
   }
+
+  @Selector([CocktailState])
+  static serchCocktailResult(state: CocktailStateModel) {
+    return state.userCocktailList;
+  }
 }

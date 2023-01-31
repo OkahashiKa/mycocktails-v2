@@ -3,7 +3,6 @@ import { Store, Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { MaterialModel } from 'src/app/models/material/materialModel';
 import { MaterialSelector } from 'src/app/stores/materials/materials.selector';
-import { supabase } from 'src/app/libs/supabase/supabase-client';
 import { MaterialAction } from 'src/app/stores/materials/materials.action';
 
 @Component({

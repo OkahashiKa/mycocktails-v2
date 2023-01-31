@@ -80,3 +80,9 @@ INSERT INTO m_role (id, name, create_at, update_at) VALUES (3, 'preminum', NOW()
 
 --insert m_user deta.
 INSERT INTO m_user (id, password, mail, role_id, favo_cocktail_id, create_at, update_at) VALUES ('kazuki.okahashi', '', 'okarians.302.dev@gmail.com', 1, null, NOW(), NOW());
+
+--insert t_user_material deta.
+INSERT INTO t_user_material (user_id, material_id, create_at, update_at, delete_at) VALUES ('kazuki.okahashi', 1, NOW(), NOW(), NOW());
+INSERT INTO t_user_material (user_id, material_id, create_at, update_at, delete_at) VALUES ('kazuki.okahashi', 18, NOW(), NOW(), NOW());
+INSERT INTO t_user_material (user_id, material_id, create_at, update_at, delete_at) VALUES ('kazuki.okahashi', 12, NOW(), NOW(), NOW());
+INSERT INTO t_user_material (user_id, material_id, create_at, update_at, delete_at) VALUES ('kazuki.okahashi', 22, NOW(), NOW(), NOW());

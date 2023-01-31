@@ -7,7 +7,6 @@ import { MaterialAction } from 'src/app/stores/materials/materials.action';
 import { MaterialSelector } from 'src/app/stores/materials/materials.selector';
 import { CocktailSelector } from 'src/app/stores/cocktails/cocktails.selector';
 import { CocktailModel } from 'src/app/models/cocktail/cocktailModel';
-import { SearchCocktailConditionModel } from 'src/app/models/cocktail/searchCocktailConditionModel';
 import { CocktailAction } from 'src/app/stores/cocktails/cocktails.action';
 //import { CocktailDetailDialogComponent } from 'src/app/component/dialog/cocktail-detail-dialog/cocktail-detail-dialog.component';
 
@@ -33,23 +32,19 @@ export class SearchUserCocktailsComponent implements OnInit {
   ngOnInit(): void {
     this.getUserMaterialList();
     this.userMaterialList$.subscribe((um) =>
-      this.getUserCocktail({
-        searchString: '',
-        materialIdList: um.map((um) => um.material_id) as number[],
-        materialSearchType: 'AND',
-      })
+      this.getUserCocktail(um.map((um) => um.material_id) as number[])
     );
   }
 
   getUserMaterialList(): void {
-    // this.store.dispatch(
-    //   new MaterialAction.GetUserMaterialList('kazuki.okahashi')
-    // );
+    this.store.dispatch(
+      new MaterialAction.GetUserMaterialList('kazuki.okahashi')
+    );
   }
 
-  getUserCocktail(searchCocktailCondition: SearchCocktailConditionModel): void {
+  getUserCocktail(userMaterialIdList: number[]): void {
     this.store.dispatch(
-      new CocktailAction.SearchCocktail(searchCocktailCondition)
+      new CocktailAction.GetUserCocktailList(userMaterialIdList)
     );
   }
 

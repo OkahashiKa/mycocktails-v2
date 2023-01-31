@@ -3,10 +3,7 @@ import { State, Action, StateContext } from '@ngxs/store';
 import { of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { CocktailModel } from 'src/app/models/cocktail/cocktailModel';
-import {
-  CocktailAction,
-  CocktailActionType,
-} from 'src/app/stores/cocktails/cocktails.action';
+import { CocktailAction } from 'src/app/stores/cocktails/cocktails.action';
 import { CocktailsService } from 'src/app/services/cocktails.service';
 
 export interface CocktailStateModel {
@@ -27,47 +24,64 @@ export interface CocktailStateModel {
 export class CocktailState {
   constructor(private cocktailSevice: CocktailsService) {}
 
-  @Action(CocktailAction.GetCocktail)
-  getCocktail(
-    ctx: StateContext<CocktailStateModel>,
-    action: CocktailAction.GetCocktail
-  ) {
-    return this.cocktailSevice.getCocktail(action.cocktailId).pipe(
-      tap((result) => {
-        ctx.patchState({
-          selectedCocktail: result,
-        });
-      })
-    );
-  }
+  // @Action(CocktailAction.GetCocktail)
+  // getCocktail(
+  //   ctx: StateContext<CocktailStateModel>,
+  //   action: CocktailAction.GetCocktail
+  // ) {
+  //   return this.cocktailSevice.getCocktail(action.cocktailId).pipe(
+  //     tap((result) => {
+  //       ctx.patchState({
+  //         selectedCocktail: result,
+  //       });
+  //     })
+  //   );
+  // }
 
-  @Action(CocktailAction.GetCocktailList)
-  getCocktilList({ getState, setState }: StateContext<CocktailStateModel>) {
-    const state = getState();
-    return this.cocktailSevice.getCocktailsList().pipe(
-      tap((result) => {
-        setState({
-          ...state,
-          cocktailList: result,
-        });
-      }),
-      catchError((error) => {
-        return of(error);
-      })
-    );
-  }
+  // @Action(CocktailAction.GetCocktailList)
+  // getCocktilList({ getState, setState }: StateContext<CocktailStateModel>) {
+  //   const state = getState();
+  //   return this.cocktailSevice.getCocktailsList().pipe(
+  //     tap((result) => {
+  //       setState({
+  //         ...state,
+  //         cocktailList: result,
+  //       });
+  //     }),
+  //     catchError((error) => {
+  //       return of(error);
+  //     })
+  //   );
+  // }
 
-  @Action(CocktailAction.SearchCocktail)
-  searchCocktail(
+  @Action(CocktailAction.GetUserCocktailList)
+  getUserCocktilList(
     ctx: StateContext<CocktailStateModel>,
-    action: CocktailAction.SearchCocktail
+    action: CocktailAction.GetUserCocktailList
   ) {
     return this.cocktailSevice
-      .searchCocktail(action.searchCocktailCondition)
+      .getUserCocktailsList(action.userMaterialIdList)
       .pipe(
         tap((result) => {
           ctx.patchState({ userCocktailList: result });
+        }),
+        catchError((error) => {
+          return of(error);
         })
       );
   }
+
+  // @Action(CocktailAction.SearchCocktail)
+  // searchCocktail(
+  //   ctx: StateContext<CocktailStateModel>,
+  //   action: CocktailAction.SearchCocktail
+  // ) {
+  //   return this.cocktailSevice
+  //     .searchCocktail(action.searchCocktailCondition)
+  //     .pipe(
+  //       tap((result) => {
+  //         ctx.patchState({ userCocktailList: result });
+  //       })
+  //     );
+  // }
 }

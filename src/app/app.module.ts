@@ -13,6 +13,7 @@ import { MatTableModule } from '@angular/material/table';
 import { ManagementMaterialsComponent } from './pages/management-materials/management-materials.component';
 import { MaterialState } from './stores/materials/materials.state';
 import { HttpClientModule } from '@angular/common/http';
+import { CocktailState } from './stores/cocktails/cocktails.state';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatDialogModule,
     MatTableModule,
     HttpClientModule,
-    NgxsModule.forRoot([MaterialState]),
+    NgxsModule.forRoot([MaterialState, CocktailState]),
   ],
   providers: [],
   bootstrap: [AppComponent],

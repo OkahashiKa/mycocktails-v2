@@ -14,8 +14,8 @@ export namespace MaterialAction {
     static readonly type = MaterialActionType.GetMaterialList;
   }
 
-  // export class GetUserMaterialList {
-  //   static readonly type = MaterialActionType.GetUserMaterialList;
-  //   constructor(public userId: string) {}
-  // }
+  export class GetUserMaterialList {
+    static readonly type = MaterialActionType.GetUserMaterialList;
+    constructor(public userId: string) {}
+  }
 }

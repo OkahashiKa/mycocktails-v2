@@ -51,15 +51,15 @@ export class MaterialState {
     );
   }
 
-  // @Action(MaterialAction.GetUserMaterialList)
-  // getUserMaterialList(
-  //   ctx: StateContext<MaterialStateModel>,
-  //   action: MaterialAction.GetUserMaterialList
-  // ) {
-  //   return this.materiallSevice.getUserMaterialList(action.userId).pipe(
-  //     tap((data) => {
-  //       ctx.patchState({ userMaterialList: data });
-  //     })
-  //   );
-  // }
+  @Action(MaterialAction.GetUserMaterialList)
+  getUserMaterialList(
+    ctx: StateContext<MaterialStateModel>,
+    action: MaterialAction.GetUserMaterialList
+  ) {
+    return this.materiallSevice.getUserMaterialList(action.userId).pipe(
+      tap((data) => {
+        ctx.patchState({ userMaterialList: data });
+      })
+    );
+  }
 }
