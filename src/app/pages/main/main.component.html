@@ -1,0 +1,34 @@
+<div>
+  <h1>Top</h1>
+  <app-search-user-cocktails></app-search-user-cocktails>
+  <!-- <app-management-user-materials></app-management-user-materials> -->
+
+  <div class="search-cocktails-button">
+    <button
+      mat-raised-button
+      class="btn btn-secondary"
+      title="search cocktails"
+    >
+      Search Cocktails</button
+    ><br />
+  </div>
+
+  <p>￬￬￬￬￬ Admin menu. ￬￬￬￬￬</p>
+
+  <div class="edit-cocktails-button">
+    <button mat-raised-button class="btn btn-secondary" title="edit cocktails">
+      Management Cocktails
+    </button>
+  </div>
+
+  <div class="edit-materials-button">
+    <button
+      mat-raised-button
+      class="btn btn-secondary"
+      title="edit bases"
+      (click)="onClickManagementMaterials()"
+    >
+      Management Materials
+    </button>
+  </div>
+</div>
