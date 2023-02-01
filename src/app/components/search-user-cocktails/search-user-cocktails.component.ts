@@ -8,7 +8,7 @@ import { MaterialSelector } from 'src/app/stores/materials/materials.selector';
 import { CocktailSelector } from 'src/app/stores/cocktails/cocktails.selector';
 import { CocktailModel } from 'src/app/models/cocktail/cocktailModel';
 import { CocktailAction } from 'src/app/stores/cocktails/cocktails.action';
-//import { CocktailDetailDialogComponent } from 'src/app/component/dialog/cocktail-detail-dialog/cocktail-detail-dialog.component';
+import { CocktailDetailDialogComponent } from 'src/app/components/cocktail-detail-dialog/cocktail-detail-dialog.component';
 
 export interface CocktailDetailDialogData {
   cocktailId: number;
@@ -49,11 +49,11 @@ export class SearchUserCocktailsComponent implements OnInit {
   }
 
   openCocktailDetailDialog(cocktailId?: number) {
-    // this.dialog.open(CocktailDetailDialogComponent, {
-    //   width: '250',
-    //   data: {
-    //     cocktailId: cocktailId,
-    //   },
-    // });
+    this.dialog.open(CocktailDetailDialogComponent, {
+      width: '250',
+      data: {
+        cocktailId: cocktailId,
+      },
+    });
   }
 }

@@ -14,6 +14,7 @@ import { ManagementMaterialsComponent } from './pages/management-materials/manag
 import { MaterialState } from './stores/materials/materials.state';
 import { HttpClientModule } from '@angular/common/http';
 import { CocktailState } from './stores/cocktails/cocktails.state';
+import { CocktailDetailDialogComponent } from './components/cocktail-detail-dialog/cocktail-detail-dialog.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { CocktailState } from './stores/cocktails/cocktails.state';
     MainComponent,
     SearchUserCocktailsComponent,
     ManagementMaterialsComponent,
+    CocktailDetailDialogComponent,
   ],
   imports: [
     BrowserModule,
