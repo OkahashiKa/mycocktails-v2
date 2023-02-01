@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { MaterialModel } from 'src/app/models/material/materialModel';
-import { MaterialAction } from 'src/app/stores/materials/materials.action';
-import { MaterialSelector } from 'src/app/stores/materials/materials.selector';
-import { CocktailSelector } from 'src/app/stores/cocktails/cocktails.selector';
-import { CocktailModel } from 'src/app/models/cocktail/cocktailModel';
-import { CocktailAction } from 'src/app/stores/cocktails/cocktails.action';
-import { CocktailDetailDialogComponent } from 'src/app/components/cocktail-detail-dialog/cocktail-detail-dialog.component';
+import { MaterialModel } from '@/models/material/materialModel';
+import { MaterialAction } from '@/stores/materials/materials.action';
+import { MaterialSelector } from '@/stores/materials/materials.selector';
+import { CocktailSelector } from '@/stores/cocktails/cocktails.selector';
+import { CocktailModel } from '@/models/cocktail/cocktailModel';
+import { CocktailAction } from '@/stores/cocktails/cocktails.action';
+import { CocktailDetailDialogComponent } from '@/components/cocktail-detail-dialog/cocktail-detail-dialog.component';
 
 export interface CocktailDetailDialogData {
   cocktailId: number;

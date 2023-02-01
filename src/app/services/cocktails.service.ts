@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { defer, Observable } from 'rxjs';
-import { CocktailModel } from 'src/app/models/cocktail/cocktailModel';
-import { SearchCocktailConditionModel } from 'src/app/models/cocktail/searchCocktailConditionModel';
-import { supabase } from 'src/app/libs/supabase/supabase-client';
+import { CocktailModel } from '@/models/cocktail/cocktailModel';
+import { SearchCocktailConditionModel } from '@/models/cocktail/searchCocktailConditionModel';
+import { supabase } from '@/libs/supabase/supabase-client';
 
 @Injectable({
   providedIn: 'root',

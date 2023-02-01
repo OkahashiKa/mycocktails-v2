@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { defer, Observable } from 'rxjs';
-import { MaterialModel } from 'src/app/models/material/materialModel';
-import { MaterialDetailModel } from 'src/app/models/material/materialDetailModel';
-import { CommonMessageModel } from 'src/app/models/common/commonMessageModel';
-import { UserMaterialModel } from 'src/app/models/material/userMaterialModel';
-import { supabase } from 'src/app/libs/supabase/supabase-client';
+import { MaterialModel } from '@/models/material/materialModel';
+import { MaterialDetailModel } from '@/models/material/materialDetailModel';
+import { CommonMessageModel } from '@/models/common/commonMessageModel';
+import { UserMaterialModel } from '@/models/material/userMaterialModel';
+import { supabase } from '@/libs/supabase/supabase-client';
 
 @Injectable({
   providedIn: 'root',

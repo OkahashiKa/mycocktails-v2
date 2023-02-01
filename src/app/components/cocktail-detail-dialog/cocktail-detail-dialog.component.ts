@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CocktailDetailDialogData } from 'src/app/components/search-user-cocktails/search-user-cocktails.component';
+import { CocktailDetailDialogData } from '@/components/search-user-cocktails/search-user-cocktails.component';
 
 @Component({
   selector: 'app-cocktail-detail-dialog',

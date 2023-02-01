@@ -117,6 +117,22 @@ URL を持たないコンポーネントを作成する。
 
 今回は Ngxs を使用するため、Store の Action, selecter, state を配置する。
 
+#### パスの設定
+
+tsconfig.json で以下のパスエイリアス設定を行なっている。
+
+```json
+"paths": {
+   "@/*": ["src/app/*"]
+},
+```
+
+コンポーネントを`inport`する際は以下のようなエイリアスを使用し絶対パスで記載する。
+
+```ts
+import { CocktailDetailDialogData } from "@/components/search-user-cocktails/search-user-cocktails.component";
+```
+
 ### 自動テスト
 
 Angular のテストは標準で搭載されている Jasmin + Karma を使用する。
