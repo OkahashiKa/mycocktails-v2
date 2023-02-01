@@ -1,0 +1,13 @@
+.cocktail-image {
+    float: left;
+}
+
+.cocktail-recipi{
+    float: left;
+    margin: 0px 50px;
+}
+
+.cocktail-remark {
+    padding-top: 30px;
+    clear:  both;
+}
