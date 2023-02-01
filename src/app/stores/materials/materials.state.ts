@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { State, Action, StateContext } from '@ngxs/store';
 import { of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
-import { MaterialModel } from 'src/app/models/material/materialModel';
-import { MaterialDetailModel } from 'src/app/models/material/materialDetailModel';
-import { MaterialAction } from 'src/app/stores/materials/materials.action';
-import { MaterialsService } from 'src/app/services/materials.service';
+import { MaterialModel } from '@/models/material/materialModel';
+import { MaterialDetailModel } from '@/models/material/materialDetailModel';
+import { MaterialAction } from '@/stores/materials/materials.action';
+import { MaterialsService } from '@/services/materials.service';
 
 export interface MaterialStateModel {
   selectedMaterial: MaterialDetailModel | null;

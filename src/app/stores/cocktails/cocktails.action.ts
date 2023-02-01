@@ -1,4 +1,4 @@
-import { SearchCocktailConditionModel } from 'src/app/models/cocktail/searchCocktailConditionModel';
+import { SearchCocktailConditionModel } from '@/models/cocktail/searchCocktailConditionModel';
 
 export enum CocktailActionType {
   GetCocktail = '[Cocktail] Get Cocktail',

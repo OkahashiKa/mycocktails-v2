@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { State, Action, StateContext } from '@ngxs/store';
 import { of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
-import { CocktailModel } from 'src/app/models/cocktail/cocktailModel';
-import { CocktailAction } from 'src/app/stores/cocktails/cocktails.action';
-import { CocktailsService } from 'src/app/services/cocktails.service';
+import { CocktailModel } from '@/models/cocktail/cocktailModel';
+import { CocktailAction } from '@/stores/cocktails/cocktails.action';
+import { CocktailsService } from '@/services/cocktails.service';
 
 export interface CocktailStateModel {
   selectedCocktail: CocktailModel | null;
