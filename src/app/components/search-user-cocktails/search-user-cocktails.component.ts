@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { MaterialModel } from '@/models/material/materialModel';
-import { MaterialAction } from '@/stores/materials/materials.action';
-import { MaterialSelector } from '@/stores/materials/materials.selector';
-import { CocktailSelector } from '@/stores/cocktails/cocktails.selector';
 import { CocktailModel } from '@/models/cocktail/cocktailModel';
-import { CocktailAction } from '@/stores/cocktails/cocktails.action';
 import { CocktailDetailDialogComponent } from '@/components/cocktail-detail-dialog/cocktail-detail-dialog.component';
+import { MaterialsService } from '@/services/materials.service';
+import { CocktailsService } from '@/services/cocktails.service';
 
 export interface CocktailDetailDialogData {
   cocktailId: number;
@@ -20,32 +16,33 @@ export interface CocktailDetailDialogData {
   styleUrls: ['./search-user-cocktails.component.scss'],
 })
 export class SearchUserCocktailsComponent implements OnInit {
-  @Select(MaterialSelector.userMaterialList) userMaterialList$!: Observable<
-    MaterialModel[]
-  >;
-  @Select(CocktailSelector.userCocktailList) userCocktailList$!: Observable<
-    CocktailModel[]
-  >;
+  public userMaterialList: MaterialModel[] = [];
+  public userCocktailList: CocktailModel[] = [];
 
-  constructor(private store: Store, private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private materialService: MaterialsService,
+    private cocktailService: CocktailsService
+  ) {}
 
   ngOnInit(): void {
-    this.getUserMaterialList();
-    this.userMaterialList$.subscribe((um) =>
-      this.getUserCocktail(um.map((um) => um.material_id) as number[])
-    );
-  }
+    // @note: ユーザー材料の取得
+    this.materialService
+      .getUserMaterialList('kazuki.okahashi')
+      .subscribe((userMaterialList) => {
+        this.userMaterialList = userMaterialList;
 
-  getUserMaterialList(): void {
-    this.store.dispatch(
-      new MaterialAction.GetUserMaterialList('kazuki.okahashi')
-    );
-  }
+        const userMaterialIdList = userMaterialList.map(
+          (userMaterial) => userMaterial.material_id
+        ) as number[];
 
-  getUserCocktail(userMaterialIdList: number[]): void {
-    this.store.dispatch(
-      new CocktailAction.GetUserCocktailList(userMaterialIdList)
-    );
+        // @note: ユーザーカクテルの取得
+        this.cocktailService
+          .getUserCocktailsList(userMaterialIdList)
+          .subscribe(
+            (UserCocktailList) => (this.userCocktailList = UserCocktailList)
+          );
+      });
   }
 
   openCocktailDetailDialog(cocktailId?: number) {

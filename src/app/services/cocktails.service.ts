@@ -41,7 +41,7 @@ export class CocktailsService {
     userMaterialIdList: number[]
   ): Promise<CocktailModel[]> {
     // @note: レシピテーブルから材料にユーザー材料が含まれるカクテルのIDを取得する
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from('m_cocktail_recipi')
       .select('cocktail_id')
       .in('material_id', userMaterialIdList);
@@ -95,7 +95,7 @@ export class CocktailsService {
     }
 
     const { data: userCocktailList } = await supabase
-      .from<CocktailModel>('m_cocktail')
+      .from('m_cocktail')
       .select('id, name, remarks, image')
       .in('id', userCocktailIdList);
 
