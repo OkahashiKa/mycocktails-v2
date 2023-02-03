@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
 import { MaterialModel } from '@/models/material/materialModel';
-import { MaterialSelector } from '@/stores/materials/materials.selector';
-import { MaterialAction } from '@/stores/materials/materials.action';
 
 @Component({
   selector: 'app-management-materials',
@@ -11,21 +7,15 @@ import { MaterialAction } from '@/stores/materials/materials.action';
   styleUrls: ['./management-materials.component.scss'],
 })
 export class ManagementMaterialsComponent implements OnInit {
-  @Select(MaterialSelector.materialList) materialList$!: Observable<
-    MaterialModel[]
-  >;
-
   displayedColumns: string[] = ['select', 'id', 'name', 'category', 'edit'];
 
-  constructor(private store: Store) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.getMaterialList();
   }
 
-  getMaterialList(): void {
-    this.store.dispatch(new MaterialAction.GetMaterialList());
-  }
+  getMaterialList(): void {}
 
   updateMaterial(id: number): void {
     // TODO: implement update materials.

@@ -26,12 +26,11 @@ export class MaterialsService {
    *
    * @returns 材料リスト Observable<MaterialModel[]>
    */
-  getMaterialsList(): Observable<MaterialModel[]> {
-    return defer(async () => {
-      return await this.getMaterialsListFromSupabase();
-    });
-  }
-
+  // getMaterialsList(): Observable<MaterialModel[]> {
+  //   return defer(async () => {
+  //     return await this.getMaterialsListFromSupabase();
+  //   });
+  // }
   /**
    * ユーザー材料リストを取得する
    *
@@ -43,7 +42,6 @@ export class MaterialsService {
       return await this.getUserMaterialListFromSupabase(userId);
     });
   }
-
   createUserMaterial(
     userMaterial: UserMaterialModel
   ): Observable<CommonMessageModel> {
@@ -74,9 +72,9 @@ export class MaterialsService {
    *
    * @returns 材料リスト Promise<MaterialModel[]>
    */
-  private async getMaterialsListFromSupabase(): Promise<MaterialModel[]> {
+  public async getMaterialsList(): Promise<MaterialModel[]> {
     const { data: materialList, error } = await supabase
-      .from<MaterialModel>('v_material')
+      .from('v_material')
       .select('*');
 
     if (error) {
@@ -115,7 +113,7 @@ export class MaterialsService {
     );
 
     const { data: userMaterialList } = await supabase
-      .from<MaterialModel>('v_material')
+      .from('v_material')
       .select('*')
       .in('material_id', userMaterialIdList);
 
