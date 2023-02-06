@@ -1,36 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { defer, Observable } from 'rxjs';
 import { MaterialModel } from '@/models/material/materialModel';
-import { MaterialDetailModel } from '@/models/material/materialDetailModel';
-import { CommonMessageModel } from '@/models/common/commonMessageModel';
-import { UserMaterialModel } from '@/models/material/userMaterialModel';
 import { supabase } from '@/libs/supabase/supabase-client';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MaterialsService {
-  private readonly BASE_PATH = 'aaa' + 'materials';
-
-  constructor(private httpClient: HttpClient) {}
-
-  getMaterial(materialId: number): Observable<MaterialDetailModel> {
-    return this.httpClient.get<MaterialDetailModel>(
-      `${this.BASE_PATH}/${materialId}`
-    );
-  }
-
   /**
    * 材料リストを取得する
    *
    * @returns 材料リスト Observable<MaterialModel[]>
    */
-  // getMaterialsList(): Observable<MaterialModel[]> {
-  //   return defer(async () => {
-  //     return await this.getMaterialsListFromSupabase();
-  //   });
-  // }
+  getMaterialsList(): Observable<MaterialModel[]> {
+    return defer(async () => {
+      return await this.getMaterialsListFromSupabase();
+    });
+  }
+
   /**
    * ユーザー材料リストを取得する
    *
@@ -42,37 +29,13 @@ export class MaterialsService {
       return await this.getUserMaterialListFromSupabase(userId);
     });
   }
-  createUserMaterial(
-    userMaterial: UserMaterialModel
-  ): Observable<CommonMessageModel> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-    };
-
-    return this.httpClient.post<CommonMessageModel>(
-      `${this.BASE_PATH}/user_material`,
-      userMaterial,
-      httpOptions
-    );
-  }
-
-  deleteUserMaterial(
-    userId: string,
-    materialId: number
-  ): Observable<CommonMessageModel> {
-    return this.httpClient.delete<CommonMessageModel>(
-      `${this.BASE_PATH}/user_material?userId=${userId}&materialId=${materialId}`
-    );
-  }
 
   /**
    * Supabaseから材料リストを取得する
    *
    * @returns 材料リスト Promise<MaterialModel[]>
    */
-  public async getMaterialsList(): Promise<MaterialModel[]> {
+  public async getMaterialsListFromSupabase(): Promise<MaterialModel[]> {
     const { data: materialList, error } = await supabase
       .from('v_material')
       .select('*');
