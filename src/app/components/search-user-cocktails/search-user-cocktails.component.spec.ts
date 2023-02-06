@@ -7,7 +7,7 @@ import { MaterialModel } from '@/models/material/materialModel';
 import { of } from 'rxjs';
 import { CocktailModel } from '@/models/cocktail/cocktailModel';
 
-fdescribe('SearchUserCocktailsComponent', () => {
+describe('SearchUserCocktailsComponent', () => {
   let component: SearchUserCocktailsComponent;
   let fixture: ComponentFixture<SearchUserCocktailsComponent>;
 
