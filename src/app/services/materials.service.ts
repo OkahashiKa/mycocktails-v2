@@ -20,7 +20,6 @@ export class MaterialsService {
 
   /**
    * ユーザー材料リストを取得する
-   *
    * @param userId ユーザーID
    * @returns ユーザー材料リスト
    */
@@ -32,7 +31,6 @@ export class MaterialsService {
 
   /**
    * Supabaseから材料リストを取得する
-   *
    * @returns 材料リスト Promise<MaterialModel[]>
    */
   public async getMaterialsListFromSupabase(): Promise<MaterialModel[]> {
