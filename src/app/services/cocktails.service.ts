@@ -17,7 +17,6 @@ export class CocktailsService {
     userMaterialIdList: number[]
   ): Observable<CocktailModel[]> {
     return defer(async () => {
-      // @note: レシピテーブルから材料にユーザー材料が含まれるカクテルのIDを取得する
       const cocktailIdWithUserMaterialInRecipe =
         await this.supabaseCocktailService.getCocktailIdWithUserMaterialInRecipe(
           userMaterialIdList
@@ -31,14 +30,13 @@ export class CocktailsService {
         new Set(cocktailIdWithUserMaterialInRecipe)
       );
 
-      // @note: カクテルレシピの情報を全件取得する
       const cocktailRecipeList =
         await this.supabaseCocktailService.getCocktailRecipe();
 
-      // @note: レシピが取得デッキなかった場合、空配列を返す
+      // @note: レシピが取得できなかった場合、空配列を返す
       if (!cocktailRecipeList.length) return [];
 
-      // @note: ユーザーが作成可能なカクテルのIDリスト
+      // @note: ユーザーが作成可能なカクテルIDリスト
       const userCocktailIdList: number[] = [];
 
       // @note: 候補カクテルが作成可能かの検証を行う

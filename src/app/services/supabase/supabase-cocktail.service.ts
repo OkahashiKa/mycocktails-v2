@@ -8,7 +8,7 @@ import { CocktailResipeModel } from '@/models/cocktail/cocktailRecipeModel';
 })
 export class SupabaseCocktailService {
   /**
-   * ユーザー材料がレシピに含まれるカクテルのIDリストを取得する
+   * Supabaseからユーザー材料がレシピに含まれるカクテルのIDリストを取得する
    * @param userMaterialIdList ユーザー材料IDリスト
    * @returns 候補カクテルIDリスト
    */
@@ -30,7 +30,7 @@ export class SupabaseCocktailService {
   }
 
   /**
-   * カクテルレシピリストを取得する
+   * Supabaseからカクテルレシピリストを取得する
    * @returns カクテルレシピリスト
    */
   public async getCocktailRecipe(): Promise<CocktailResipeModel[]> {
@@ -42,7 +42,7 @@ export class SupabaseCocktailService {
   }
 
   /**
-   * カクテルIDリストからカクテル情報を取得する
+   * SupabaseからカクテルIDリストに紐づくカクテル情報を取得する
    * @param cocktailIdList カクテルIDリスト
    * @returns カクテル情報
    */
