@@ -12,7 +12,7 @@ describe('CocktailsService', () => {
   let cocktailRecipeList: CocktailResipeModel[] = [];
   let userCocktailList: CocktailModel[] = [];
 
-  // @note: サービスのモック
+  // @note: サービスモック
   const supabaseCocktailServiceMock = {
     getCocktailIdWithUserMaterialInRecipe: async () =>
       await cocktailIdWithUserMaterialInRecipe,
