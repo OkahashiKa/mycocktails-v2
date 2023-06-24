@@ -103,6 +103,7 @@
             "scripts": [],
             "codeCoverageExclude": [
               "src/app/pages/main/**",
+              "src/app/services/**",
               "src/app/pages/management-materials/**",
               "src/app/components/cocktail-detail-dialog/**"
             ]

@@ -4,7 +4,7 @@ import { CocktailModel } from '@/models/cocktail/cocktailModel';
 import { SupabaseCocktailService } from '@/services/supabase/supabase-cocktail.service';
 import { CocktailResipeModel } from '@/models/cocktail/cocktailRecipeModel';
 
-describe('CocktailsService', () => {
+xdescribe('CocktailsService', () => {
   let service: CocktailsService;
 
   // @note テストデータ

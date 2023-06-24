@@ -27,7 +27,6 @@ export class MaterialsService {
     return defer(async () => {
       const userMaterialIdList =
         await this.supabaseMaterialService.getUserMaterialIdList(userId);
-
       if (!userMaterialIdList || !userMaterialIdList.length) return [];
 
       return await this.supabaseMaterialService.getMaterialByIdList(
