@@ -40,7 +40,7 @@ export class SearchUserCocktailsComponent implements OnInit {
         this.cocktailService
           .getUserCocktailsList(userMaterialIdList)
           .subscribe(
-            (UserCocktailList) => (this.userCocktailList = UserCocktailList)
+            (userCocktailList) => (this.userCocktailList = userCocktailList)
           );
       });
   }

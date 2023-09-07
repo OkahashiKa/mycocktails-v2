@@ -9,16 +9,18 @@ import { CocktailResipeModel } from '@/models/cocktail/cocktailRecipeModel';
 export class SupabaseCocktailService {
   /**
    * SubaoaseからカクテルIDに紐づくカクテル情報を取得する
-   * @param cocktailLd カクテルID
+   * @param cocktailIdList カクテルIDリスト
    * @returns カクテル情報
    */
-  public async getCocktailById(cocktailLd: Number): Promise<CocktailModel> {
+  public async getCocktailById(
+    cocktailIdList: Number[]
+  ): Promise<CocktailModel[]> {
     const { data } = await supabase
       .from('m_cocktail')
       .select('id, name, remarks, image')
-      .eq('id', cocktailLd);
+      .in('id', cocktailIdList);
 
-    return data as CocktailModel;
+    return data as CocktailModel[];
   }
 
   /**

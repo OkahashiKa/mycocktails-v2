@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CocktailDetailDialogData } from '@/components/search-user-cocktails/search-user-cocktails.component';
 import { CocktailsService } from '@/services/cocktails.service';
+import { CocktailModel } from '@/models/cocktail/cocktailModel';
 
 @Component({
   selector: 'app-cocktail-detail-dialog',
@@ -9,6 +10,7 @@ import { CocktailsService } from '@/services/cocktails.service';
   styleUrls: ['./cocktail-detail-dialog.component.css'],
 })
 export class CocktailDetailDialogComponent implements OnInit {
+  public cocktailDetail?: CocktailModel;
   public readonly nonImageURL: string =
     'https://erpbbaxjnffnjoheuupq.supabase.co/storage/v1/object/public/images/noimage-760x460.png?t=2023-02-02T23%3A16%3A19.502Z';
 
@@ -19,6 +21,11 @@ export class CocktailDetailDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.cocktailService.getCocktail(this.data.cocktailId));
+    // @note: IDをキーにカクテル詳細を取得す
+    this.cocktailService
+      .getCocktail([this.data.cocktailId])
+      .subscribe((cocktailDetail) => {
+        this.cocktailDetail = cocktailDetail[0];
+      });
   }
 }

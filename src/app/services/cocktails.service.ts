@@ -9,9 +9,14 @@ import { SupabaseCocktailService } from '@/services/supabase/supabase-cocktail.s
 export class CocktailsService {
   constructor(private supabaseCocktailService: SupabaseCocktailService) {}
 
-  getCocktail(cocktailId: Number): Observable<CocktailModel> {
+  /**
+   * カクテルIDリストに紐づくカクテルのリストを取得する
+   * @param cocktailIdList  カクテルIDリスト
+   * @returns カクテル情報リスト
+   */
+  getCocktail(cocktailIdList: Number[]): Observable<CocktailModel[]> {
     return defer(async () => {
-      return await this.supabaseCocktailService.getCocktailById(cocktailId);
+      return await this.supabaseCocktailService.getCocktailById(cocktailIdList);
     });
   }
 
