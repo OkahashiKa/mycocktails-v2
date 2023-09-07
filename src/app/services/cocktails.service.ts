@@ -8,6 +8,13 @@ import { SupabaseCocktailService } from '@/services/supabase/supabase-cocktail.s
 })
 export class CocktailsService {
   constructor(private supabaseCocktailService: SupabaseCocktailService) {}
+
+  getCocktail(cocktailId: Number): Observable<CocktailModel> {
+    return defer(async () => {
+      return await this.supabaseCocktailService.getCocktailById(cocktailId);
+    });
+  }
+
   /**
    * ユーザーが作成可能なカクテルリストを取得する
    * @param userMaterialIdList

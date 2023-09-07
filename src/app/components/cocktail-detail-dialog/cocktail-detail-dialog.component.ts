@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CocktailDetailDialogData } from '@/components/search-user-cocktails/search-user-cocktails.component';
+import { CocktailsService } from '@/services/cocktails.service';
 
 @Component({
   selector: 'app-cocktail-detail-dialog',
@@ -13,10 +14,11 @@ export class CocktailDetailDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<CocktailDetailDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: CocktailDetailDialogData
+    @Inject(MAT_DIALOG_DATA) public data: CocktailDetailDialogData,
+    private cocktailService: CocktailsService
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data);
+    console.log(this.cocktailService.getCocktail(this.data.cocktailId));
   }
 }

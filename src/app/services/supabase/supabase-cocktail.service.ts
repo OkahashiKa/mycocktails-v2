@@ -8,6 +8,42 @@ import { CocktailResipeModel } from '@/models/cocktail/cocktailRecipeModel';
 })
 export class SupabaseCocktailService {
   /**
+   * SubaoaseからカクテルIDに紐づくカクテル情報を取得する
+   * @param cocktailLd カクテルID
+   * @returns カクテル情報
+   */
+  public async getCocktailById(cocktailLd: Number): Promise<CocktailModel> {
+    const { data } = await supabase
+      .from('m_cocktail')
+      .select('id, name, remarks, image')
+      .eq('id', cocktailLd);
+
+    return data as CocktailModel;
+  }
+
+  /**
+   * SupabaseからカクテルIDリストに紐づくカクテル情報を取得する
+   * @param cocktailIdList カクテルIDリスト
+   * @returns カクテル情報
+   */
+  public async getCocktailByIdList(
+    cocktailIdList: number[]
+  ): Promise<CocktailModel[]> {
+    const { data } = await supabase
+      .from('m_cocktail')
+      .select('id, name, remarks, image')
+      .in('id', cocktailIdList);
+
+    // @note: カクテル情報が取得できない場合は空配列を返す
+    if (!data || !data.length) {
+      return [];
+    }
+
+    // オブジェクトからCocktailModel[]に変換
+    return data as CocktailModel[];
+  }
+
+  /**
    * Supabaseからユーザー材料がレシピに含まれるカクテルのIDリストを取得する
    * @param userMaterialIdList ユーザー材料IDリスト
    * @returns 候補カクテルIDリスト
@@ -39,27 +75,5 @@ export class SupabaseCocktailService {
       .select('material_id, cocktail_id');
 
     return data as CocktailResipeModel[];
-  }
-
-  /**
-   * SupabaseからカクテルIDリストに紐づくカクテル情報を取得する
-   * @param cocktailIdList カクテルIDリスト
-   * @returns カクテル情報
-   */
-  public async getCocktailByIdList(
-    cocktailIdList: number[]
-  ): Promise<CocktailModel[]> {
-    const { data } = await supabase
-      .from('m_cocktail')
-      .select('id, name, remarks, image')
-      .in('id', cocktailIdList);
-
-    // @note: カクテル情報が取得できない場合は空配列を返す
-    if (!data || !data.length) {
-      return [];
-    }
-
-    // オブジェクトからCocktailModel[]に変換
-    return data as CocktailModel[];
   }
 }
